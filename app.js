@@ -6,10 +6,7 @@ const port = 3000
 // express-handlebars setting
 const exphbs = require('express-handlebars')
 
-app.engine('handlebars', exphbs({
-  defaultLayout: 'main'
-}))
-
+app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 // mongoose setting
@@ -28,5 +25,9 @@ db.once('open', () => {
 
 // routes
 app.get('/', (req, res) => {
-  console.log('node is ready.')
+  res.render('index')
+})
+
+app.listen(port, () => {
+  console.log(`URLShortenr is running on http://localhost:${port}`)
 })
