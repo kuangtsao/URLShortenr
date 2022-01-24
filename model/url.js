@@ -4,12 +4,12 @@ const Schema = mongoose.Schema
 // 定義 schema
 const shortenUrlSchema = new Schema({
   hash_id: {
-    type: String
-    required: true
+    type: String,
+    require: true
   },
   url: {
-    type: String
-    required: true
+    type: String,
+    require: true
   }
 })
 
