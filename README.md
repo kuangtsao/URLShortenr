@@ -1,4 +1,4 @@
-# URLShortenr
+# URLShortenr 0.4.0
 
 ## 簡介
 alphacamp 2-3 week 4 作業
@@ -60,4 +60,5 @@ URLShortenr is running on http://localhost:3000
 - express 4.17.2
 - express-handlebars 6.0.2
 - bootstrap 5.0.2
+- fontawesome 5.9.0
 - mongoose 6.1.6

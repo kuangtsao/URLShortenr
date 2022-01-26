@@ -1,6 +1,6 @@
 {
   "name": "URLShortenr",
-  "version": "1.0.0",
+  "version": "0.4.0",
   "description": "alphacamp 2-3 week 4 作業",
   "main": "app.js",
   "scripts": {
