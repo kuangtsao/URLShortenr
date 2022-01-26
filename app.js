@@ -27,10 +27,13 @@ const genHash = require('./genHash')
 
 app.post('/', (req, res) => {
   // TODO: route post / 
-  // 1. 收 body 的 url，query mongo
-  // 如果有直接跳到 result
+  // 1. 檢查前端輸入值與 url
+  // 收 req.body.url 
+  // 如果前端輸入值不為 url 跳回首頁報錯
+  // query req.body.url，如果 url 重複 跳回首頁報錯(null 通過，其他不通過)
   // 2. query mongo，是否有同樣的的 hashValue，如果沒有則往下做
-  // 有的話，重新產生一次
+  // 有的話，重新產生一次，並取代原有的 hashValue(null 通過，其他重新產生後往下做)
+  // 3. 以上檢查完畢後，將所有資料 create 進 mongo，render result 頁面
   const hashValue = genHash()
   console.log(`hashvalue: ${hashValue}`)
   res.render('result', { hashValue })
