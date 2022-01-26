@@ -14,7 +14,7 @@ app.use(express.static('public'))
 
 // routes
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('index', { existence: true })
 })
 
 const genHash = require('./genHash')
