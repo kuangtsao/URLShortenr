@@ -12,6 +12,12 @@ app.set('view engine', 'handlebars')
 // setting local static file
 app.use(express.static('public'))
 
+// db config
+const Shorturl = require('./model/url')
+
+// connect db
+require('./config/mongoose')
+
 // routes
 app.get('/', (req, res) => {
   res.render('index', { existence: true })
@@ -30,10 +36,19 @@ app.post('/', (req, res) => {
   res.render('result', { hashValue })
 })
 
-// TODO: route get /:hashId
-// 1. 收 res.query 的 id，query mongo
-// 如果有 query 到，跳去該頁面
-// 如果沒有 query 到，index render 警告訊息(利用 flag，類似 restaurant list search bar 的方式)
+app.get('/:hash', (req, res) => {
+  const hashValue = req.params.hash
+  Shorturl.findOne({ hash_id: hashValue })
+    .lean()
+    .then(result => {
+      if (result !== null) {
+        res.redirect(result.url)
+      } else {
+        res.render('index', { existence: false })
+      }
+    })
+    .catch(error => console.error(error))
+})
 
 app.listen(port, () => {
   console.log(`URLShortenr is running on http://localhost:${port}`)
