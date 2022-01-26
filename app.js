@@ -14,6 +14,14 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+const genHash = require('./genHash')
+
+app.post('/', (req, res) => {
+  const hashValue = genHash()
+  console.log(`hashvalue: ${hashValue}`)
+  res.render('result', { hashValue })
+})
+
 app.listen(port, () => {
   console.log(`URLShortenr is running on http://localhost:${port}`)
 })
