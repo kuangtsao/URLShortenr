@@ -4,7 +4,7 @@ function sample(arr) {
   return arr[randomIndex]
 }
 
-function generateHash () {
+function genHash () {
   // 定義 user 需要的東西
   const lowerAlphabet = 'abcdefghijklmnopqrstuvwxyz'
   const upperAlphabet = lowerAlphabet.toUpperCase()
@@ -23,3 +23,5 @@ function generateHash () {
   // 回傳密碼
   return hash
 }
+
+module.exports = genHash
