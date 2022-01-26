@@ -34,7 +34,7 @@ app.post('/', (req, res) => {
   // 2. query mongo，是否有同樣的的 hashValue，如果沒有則往下做
   // 有的話，重新產生一次，並取代原有的 hashValue(null 通過，其他重新產生後往下做)
   // 3. 以上檢查完畢後，將所有資料 create 進 mongo，render result 頁面
-  const hashValue = genHash()
+  let hashValue = genHash()
   console.log(`hashvalue: ${hashValue}`)
   res.render('result', { hashValue })
 })
