@@ -105,3 +105,6 @@ dist
 
 # mongodb data
 mongodb/*db
+
+# local lab files
+test.html
