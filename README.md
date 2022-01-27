@@ -2,7 +2,7 @@
 
 ## 簡介
 alphacamp 2-3 week 4 作業
-輸入網址後，會 hash 一個 5 位數(由大小寫英文字母和數字構成)，之後再利用 `heroku 網址/5位數字`，即可轉址到輸入的網址
+輸入網址後，會 hash 一個 5 位數(由大小寫英文字母和數字構成)，之後再利用 `localhost:3000/5位數字`，即可轉址到輸入的網址
 
 ## 安裝
 1. 開啟終端機，確認好路徑，`git clone` 此專案，cd 到底下
@@ -61,6 +61,8 @@ URLShortenr is running on http://localhost:3000
 觀摩他人作業，發現想處理重複 hashValue 和 url 問題會牽扯到下學期的進度，後續重寫時可以觀察 shorturl 這個分支的 commit d600e900，把所有 query 都放在那裡了
 ```
 - express-validator 優化
+- heroku 部署
+- 版面優化
 
 ## 開發工具
 - node 14.16.0
