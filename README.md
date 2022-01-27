@@ -1,4 +1,4 @@
-# URLShortenr 0.9.0
+# URLShortenr 1.0.0
 
 ## 簡介
 alphacamp 2-3 week 4 作業

@@ -1,28 +1,26 @@
-<div class="container">
-  <form action="/" method="post">
-    <input type="url" name="url" id="url">
-    <button id="submit-btn" class="btn btn-outline-primary" type="submit">Shorten URL</button>
-  </form>
-  {{#unless existence}}
-  <div class="container mt-4">
-    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-    <i class="fas fa-exclamation-triangle fa-lg"></i>
-    <strong>找不到輸入的短網址！</strong> 請在上方輸入欲縮短的網址！
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
+<form action="/" method="post">
+  <input type="url" name="url" id="url" class="form-control my-2" placeholder="Input URL here">
+  <button id="submit-btn" class="btn btn-outline-primary btn-lg" type="submit">Shorten URL</button>
+</form>
+{{#unless existence}}
+<div class="container mt-4">
+  <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+  <i class="fas fa-exclamation-triangle fa-lg"></i>
+  <strong>找不到輸入的短網址！</strong> 請在上方輸入欲縮短的網址！
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-  {{/unless}}
-  {{#if urlErrorStatus}}
-  <div class="container mt-4">
-    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-      <i class="fas fa-exclamation-triangle fa-lg"></i>
-      <strong>{{ errorMessage }}</strong>
-      <!-- 檢查到重複的 url 才 render  -->
-      {{#if repeaturlStatus}}
-      縮址為：<a id="short-url" href="http://localhost:3000/{{ hashValue }}">http://localhost:3000/{{ hashValue }}</a>
-      {{/if}}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  </div>
-  {{/if}}
 </div>
+{{/unless}}
+{{#if urlErrorStatus}}
+<div class="container mt-4">
+  <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+    <i class="fas fa-exclamation-triangle fa-lg"></i>
+    <strong>{{ errorMessage }}</strong>
+    <!-- 檢查到重複的 url 才 render  -->
+    {{#if repeaturlStatus}}
+      縮址為：<a id="short-url" href="http://localhost:3000/{{ hashValue }}">http://localhost:3000/{{ hashValue }}</a>
+    {{/if}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+{{/if}}

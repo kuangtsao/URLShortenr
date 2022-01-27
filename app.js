@@ -12,7 +12,7 @@ app.set('view engine', 'handlebars')
 // express-vaildator setting
 const { body, validationResult } = require('express-validator')
 
-// import body parser 
+// import body parser
 app.use(express.urlencoded({ extended: true }))
 
 // setting local static file
@@ -31,33 +31,32 @@ app.get('/', (req, res) => {
 
 const genHash = require('./library/genHash')
 
-app.post('/', 
-  body('url').isURL().withMessage('輸入的不是可用的 URL！') , 
+app.post('/',
+  body('url').isURL().withMessage('輸入的不是可用的 URL！'),
   (req, res) => {
-  const hashValue = genHash()
-  const inputUrl = req.body.url
-  // 以後端方式檢查輸入值
-  const urlError = validationResult(req)
-  if (!urlError.isEmpty()) {
-    const errorMessage = urlError.array().map(item => Object.values(item)[1]).toString()
-    return res.status(400).render('index', { existence: true, urlErrorStatus: true, errorMessage })
-  }
- 
-  // 新增資訊到 Mongo 資料庫
-  Shorturl.create(
+    const hashValue = genHash()
+    const inputUrl = req.body.url
+    // 以後端方式檢查輸入值
+    const urlError = validationResult(req)
+    if (!urlError.isEmpty()) {
+      const errorMessage = urlError.array().map(item => Object.values(item)[1]).toString()
+      return res.status(400).render('index', { existence: true, urlErrorStatus: true, errorMessage })
+    }
+
+    // 新增資訊到 Mongo 資料庫
+    Shorturl.create(
       {
         hash_id: hashValue,
         url: inputUrl
       }
     )
-    .then(() => {
-      console.log(`新增項目:\n hash_id: ${hashValue} \n url: ${inputUrl}`)
-      console.log('成功新增，轉移到result 頁面')
-      res.render('result', { hashValue })
-    })
-    .catch(err => console.log(err))
-  
-})
+      .then(() => {
+        console.log(`新增項目:\n hash_id: ${hashValue} \n url: ${inputUrl}`)
+        console.log('成功新增，轉移到result 頁面')
+        res.render('result', { hashValue })
+      })
+      .catch(err => console.log(err))
+  })
 
 // 帶入 hash 值的轉址功能
 
