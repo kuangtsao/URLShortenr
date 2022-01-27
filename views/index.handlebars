@@ -12,4 +12,17 @@
     </div>
   </div>
   {{/unless}}
+  {{#if urlErrorStatus}}
+  <div class="container mt-4">
+    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+      <i class="fas fa-exclamation-triangle fa-lg"></i>
+      <strong>{{ errorMessage }}</strong>
+      <!-- 檢查到重複的 url 才 render  -->
+      {{#if repeaturlStatus}}
+      縮址為：<a id="short-url" href="http://localhost:3000/{{ hashValue }}">http://localhost:3000/{{ hashValue }}</a>
+      {{/if}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+  {{/if}}
 </div>

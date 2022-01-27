@@ -1,4 +1,4 @@
-# URLShortenr 0.4.0
+# URLShortenr 0.9.0
 
 ## 簡介
 alphacamp 2-3 week 4 作業
@@ -55,10 +55,18 @@ $ which docker-compose
 ```
 URLShortenr is running on http://localhost:3000
 ```
+## 未來可新增功能
+- route post / 檢查重複的 hashValue 與 url
+```
+觀摩他人作業，發現想處理重複 hashValue 和 url 問題會牽扯到下學期的進度，後續重寫時可以觀察 shorturl 這個分支的 commit d600e900，把所有 query 都放在那裡了
+```
+- express-validator 優化
+
 ## 開發工具
 - node 14.16.0
 - express 4.17.2
 - express-handlebars 6.0.2
+- express-validator 6.14.0
 - bootstrap 5.0.2
 - fontawesome 5.9.0
 - mongoose 6.1.6

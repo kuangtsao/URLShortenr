@@ -9,6 +9,12 @@ const exphbs = require('express-handlebars')
 app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+// express-vaildator setting
+const { body, validationResult } = require('express-validator')
+
+// import body parser 
+app.use(express.urlencoded({ extended: true }))
+
 // setting local static file
 app.use(express.static('public'))
 
@@ -23,21 +29,37 @@ app.get('/', (req, res) => {
   res.render('index', { existence: true })
 })
 
-const genHash = require('./genHash')
+const genHash = require('./library/genHash')
 
-app.post('/', (req, res) => {
-  // TODO: route post / 
-  // 1. 檢查前端輸入值與 url
-  // 收 req.body.url 
-  // 如果前端輸入值不為 url 跳回首頁報錯
-  // query req.body.url，如果 url 重複 跳回首頁報錯(null 通過，其他不通過)
-  // 2. query mongo，是否有同樣的的 hashValue，如果沒有則往下做
-  // 有的話，重新產生一次，並取代原有的 hashValue(null 通過，其他重新產生後往下做)
-  // 3. 以上檢查完畢後，將所有資料 create 進 mongo，render result 頁面
-  let hashValue = genHash()
-  console.log(`hashvalue: ${hashValue}`)
-  res.render('result', { hashValue })
+app.post('/', 
+  body('url').isURL().withMessage('輸入的不是可用的 URL！') , 
+  (req, res) => {
+  const hashValue = genHash()
+  const inputUrl = req.body.url
+  // 以後端方式檢查輸入值
+  const urlError = validationResult(req)
+  if (!urlError.isEmpty()) {
+    const errorMessage = urlError.array().map(item => Object.values(item)[1]).toString()
+    return res.status(400).render('index', { existence: true, urlErrorStatus: true, errorMessage })
+  }
+ 
+  // 新增資訊到 Mongo 資料庫
+  Shorturl.create(
+      {
+        hash_id: hashValue,
+        url: inputUrl
+      }
+    )
+    .then(() => {
+      console.log(`新增項目:\n hash_id: ${hashValue} \n url: ${inputUrl}`)
+      console.log('成功新增，轉移到result 頁面')
+      res.render('result', { hashValue })
+    })
+    .catch(err => console.log(err))
+  
 })
+
+// 帶入 hash 值的轉址功能
 
 app.get('/:hash', (req, res) => {
   const hashValue = req.params.hash
