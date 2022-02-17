@@ -1,0 +1,14 @@
+img {
+  width: 150px;
+  height: 150px;
+}
+
+.container {
+  width: 300px;
+  height: 150px;
+}
+
+#submit-btn {
+  /*  預設 16px button font size 16*1.25 = 20, 20 * 3 = 60px */
+  margin-left: 3em; 
+}
