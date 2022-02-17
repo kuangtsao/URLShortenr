@@ -55,7 +55,10 @@ app.post('/',
         console.log('成功新增，轉移到result 頁面')
         res.render('result', { hashValue })
       })
-      .catch(err => console.log(err))
+      .catch(error => {
+        console.error(error)
+        res.render('error', { error })
+      })
   })
 
 // 帶入 hash 值的轉址功能
@@ -71,7 +74,10 @@ app.get('/:hash', (req, res) => {
         res.render('index', { existence: false })
       }
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+      console.error(error)
+      res.render('error', { error })
+    }
 })
 
 app.listen(port, () => {
