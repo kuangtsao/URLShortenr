@@ -72,3 +72,10 @@ URLShortenr is running on http://localhost:3000
 - bootstrap 5.0.2
 - fontawesome 5.9.0
 - mongoose 6.1.6
+
+## Change Log
+- v1.1.0 
+ - 前端畫面改善
+ - library/genHash.js 效能改善
+ - 新增 error page，主要針對 promise catch error 的地方渲染頁面
+- v1.0.0 基礎功能完成
