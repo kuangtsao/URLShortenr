@@ -1,4 +1,4 @@
-# URLShortenr 1.0.0
+# URLShortenr 1.1.0
 
 ## 簡介
 alphacamp 2-3 week 4 作業
@@ -75,7 +75,7 @@ URLShortenr is running on http://localhost:3000
 
 ## Change Log
 - v1.1.0 
- - 前端畫面改善
- - library/genHash.js 效能改善
- - 新增 error page，主要針對 promise catch error 的地方渲染頁面
+  - 前端畫面改善
+  - library/genHash.js 效能改善
+  - 新增 error page，主要針對 promise catch error 的地方渲染頁面
 - v1.0.0 基礎功能完成
