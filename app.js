@@ -77,7 +77,7 @@ app.get('/:hash', (req, res) => {
     .catch(error => {
       console.error(error)
       res.render('error', { error })
-    }
+    })
 })
 
 app.listen(port, () => {
